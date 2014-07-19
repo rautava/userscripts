@@ -1,11 +1,11 @@
 // ==UserScript==
 // @id             www.geocaching.com-784fabe2-287e-4844-bc1b-064db9b63ed6@scriptish
 // @name           Show Waypoints on Karttapaikka Map
-// @version        1.2
+// @version        1.3
 // @namespace      kenmooda@gmail.com
 // @author         Tommi Rautava
 // @license        GPL version 3 or any later version; http://www.gnu.org/copyleft/gpl.html
-// @description    The script changes the map links to use Karttapaikka map on both the description and waypoints page of a geocache.
+// @description    The script changes the map links to use Karttapaikka map on both the description page and the waypoints page of a geocache on the geocaching.com site.
 // @include        http://www.geocaching.com/geocache/*
 // @include        http://www.geocaching.com/hide/wptlist.aspx?*
 // @run-at         document-end
