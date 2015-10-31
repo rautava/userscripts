@@ -8,6 +8,8 @@
 // @description    The script changes the map links to use Karttapaikka map on both the description page and the waypoints page of a geocache on the geocaching.com site.
 // @include        http://www.geocaching.com/geocache/*
 // @include        https://www.geocaching.com/geocache/*
+// @include        http://www.geocaching.com/seek/cache_details.aspx*
+// @include        https://www.geocaching.com/seek/cache_details.aspx*
 // @include        http://www.geocaching.com/hide/wptlist.aspx?*
 // @include        https://www.geocaching.com/hide/wptlist.aspx?*
 // @run-at         document-end
