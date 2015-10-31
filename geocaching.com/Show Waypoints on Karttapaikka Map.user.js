@@ -1,19 +1,21 @@
 // ==UserScript==
 // @id             www.geocaching.com-784fabe2-287e-4844-bc1b-064db9b63ed6@scriptish
 // @name           Show Waypoints on Karttapaikka Map
-// @version        1.3
+// @version        1.4
 // @namespace      kenmooda@gmail.com
 // @author         Tommi Rautava
 // @license        GPL version 3 or any later version; http://www.gnu.org/copyleft/gpl.html
 // @description    The script changes the map links to use Karttapaikka map on both the description page and the waypoints page of a geocache on the geocaching.com site.
 // @include        http://www.geocaching.com/geocache/*
+// @include        https://www.geocaching.com/geocache/*
 // @include        http://www.geocaching.com/hide/wptlist.aspx?*
+// @include        https://www.geocaching.com/hide/wptlist.aspx?*
 // @run-at         document-end
 // ==/UserScript==
 ////////////////////////////////////////////////////////////////////////////////
 //
 //    Show Waypoints on Karttapaikka Map
-//    Copyright (C) 2014  Tommi Rautava
+//    Copyright (C) 2014, 2015  Tommi Rautava
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU General Public License as published by
