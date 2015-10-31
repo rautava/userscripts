@@ -1,19 +1,21 @@
 // ==UserScript==
 // @id             www.geocaching.com-81623dfd-2928-4f4f-9297-0f83b7328ca6@scriptish
 // @name           Link to Geocache.fi
-// @version        1.0.2
-// @namespace      kenmooda@gmail.com
+// @version        1.0.3
+// @namespace      assankassa@gmail.com
 // @author         Tommi Rautava
 // @license        GPL version 3 or any later version; http://www.gnu.org/copyleft/gpl.html
 // @description    Adds links to Geocache.fi on Geocaching.com site.
 // @include        http://www.geocaching.com/geocache/*
+// @include        https://www.geocaching.com/geocache/*
 // @include        http://www.geocaching.com/seek/cache_details.aspx*
+// @include        https://www.geocaching.com/seek/cache_details.aspx*
 // @run-at         document-end
 // ==/UserScript==
 ////////////////////////////////////////////////////////////////////////////////
 //
 //    Link to Geocache.fi
-//    Copyright (C) 2011, 2013  Tommi Rautava
+//    Copyright (C) 2011, 2013, 2015  Tommi Rautava
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU General Public License as published by
