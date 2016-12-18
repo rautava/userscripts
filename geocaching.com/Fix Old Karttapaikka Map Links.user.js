@@ -4,7 +4,7 @@
 // @version        1.0
 // @namespace      assankassa@gmail.com
 // @author         Tommi Rautava
-// @license        GPL version 3 or any later version; http://www.gnu.org/copyleft/gpl.html
+// @license        MIT License
 // @description    The script fixes old Karttapaikka map links.
 // @include        http://www.geocaching.com/geocache/*
 // @include        https://www.geocaching.com/geocache/*
