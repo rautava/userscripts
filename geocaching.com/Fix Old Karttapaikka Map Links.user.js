@@ -1,7 +1,7 @@
 // ==UserScript==
 // @id             www.geocaching.com-4010d69e-c851-413d-baee-0c8a36204a48
 // @name           Fix Old Karttapaikka Map Links
-// @version        1.0
+// @version        1.1
 // @namespace      assankassa@gmail.com
 // @author         Tommi Rautava
 // @license        MIT License
@@ -13,12 +13,11 @@
 // @include        http://www.geocaching.com/hide/wptlist.aspx?*
 // @include        https://www.geocaching.com/hide/wptlist.aspx?*
 // @run-at         document-end
-// @grant          GM_log
 // ==/UserScript==
 ////////////////////////////////////////////////////////////////////////////////
 //
 //    Fix Old Karttapaikka Map Links
-//    Copyright (C) 2016  Tommi Rautava
+//    Copyright (C) 2016, 2017	Tommi Rautava
 //
 //    Permission is hereby granted, free of charge, to any person obtaining a
 //    copy of this software and associated documentation files (the
@@ -42,28 +41,50 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-function fixLink(elemId) {
+var SERVER_URL = 'https://www.6123tampere.com/tools/kartta/uudelleen_ohjaa.html';
+
+function getNewListItem(url, text) {
+	var t = document.createTextNode(text);
+
+	var a = document.createElement('a');
+	a.appendChild(t);
+	a.href = url;
+	a.setAttribute('target', '_blank');
+	a.setAttribute('rel', 'noopener noreferer');
+
+	var li = document.createElement('li');
+	li.appendChild(a);
+
+	return li;
+}
+
+function modifyMapLinks(elemId) {
 	var mapLinksSpan = document.getElementById(elemId);
 
 	if (mapLinksSpan) {
-		var links = mapLinksSpan.getElementsByTagName("A");
-		
+		var links = mapLinksSpan.getElementsByTagName('a');
+
 		for (var idx = links.length - 1; idx >= 0; idx--) {
-			var link = links.item(idx);
-
-			if (link.hostname == "kansalaisen.karttapaikka.fi") {
-				GM_log("Karttapaikka map link found");
-
-				var res = link.search.match(/y=(\d+\.\d+)\&x=(\d+\.\d+)/);
+			var kpLink = links.item(idx);
+			
+			if (kpLink.hostname == 'kansalaisen.karttapaikka.fi') {
+				var res = kpLink.search.match(/y=(\d+\.\d+)\&x=(\d+\.\d+)/);
 				if (res) {
-					link.href = "http://www.elisanet.fi/weellu/karttapaikka/testi.html?lat="+ res[1] +"&lon="+ res[2];
+					var baseUrl = SERVER_URL +'?lat='+ res[1] +'&lon='+ res[2];
+					kpLink.href = baseUrl +'&map=kp';
+
+					var kpListItem = kpLink.parentNode;
+					var rkListItem = getNewListItem(baseUrl +'&map=rk', 'Retkikartta');
+					var ptiListItem = getNewListItem(baseUrl +'&map=pti', 'Paikkatietoikkuna');
+
+					mapLinksSpan.insertBefore(rkListItem, kpListItem.nextSibling);
+					mapLinksSpan.insertBefore(ptiListItem, rkListItem.nextSibling);
 				}
 			}
 		}
 	}
 };
 
-GM_log("Fix Old Karttapaikka Map Links loaded");
-fixLink("ctl00_ContentBody_MapLinks_MapLinks");
+modifyMapLinks('ctl00_ContentBody_MapLinks_MapLinks');
 
 // EOF
