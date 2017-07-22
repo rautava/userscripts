@@ -1,7 +1,7 @@
 // ==UserScript==
 // @id             www.geocaching.com-4010d69e-c851-413d-baee-0c8a36204a48
 // @name           Fix Old Karttapaikka Map Links
-// @version        1.1
+// @version        1.2
 // @namespace      assankassa@gmail.com
 // @author         Tommi Rautava
 // @license        MIT License
@@ -26,11 +26,11 @@
 //    distribute, sublicense, and/or sell copies of the Software, and to
 //    permit persons to whom the Software is furnished to do so, subject to
 //    the following conditions:
-//    
+//
 //    The above copyright notice and this
 //    permission notice shall be included in all copies or substantial
 //    portions of the Software.
-//    
+//
 //    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT
 //    WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
 //    THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -40,8 +40,6 @@
 //    WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 ////////////////////////////////////////////////////////////////////////////////
-
-var SERVER_URL = 'https://www.6123tampere.com/tools/kartta/uudelleen_ohjaa.html';
 
 function getNewListItem(url, text) {
 	var t = document.createTextNode(text);
@@ -63,22 +61,25 @@ function modifyMapLinks(elemId) {
 
 	if (mapLinksSpan) {
 		var links = mapLinksSpan.getElementsByTagName('a');
+		var lat = '';
+		var lon = '';
 
-		for (var idx = links.length - 1; idx >= 0; idx--) {
-			var kpLink = links.item(idx);
-			
-			if (kpLink.hostname == 'kansalaisen.karttapaikka.fi') {
-				var res = kpLink.search.match(/y=(\d+\.\d+)\&x=(\d+\.\d+)/);
-				if (res) {
-					var baseUrl = SERVER_URL +'?lat='+ res[1] +'&lon='+ res[2];
-					kpLink.href = baseUrl +'&map=kp';
+		for (var idx = 0; idx < links.length; idx++) {
+			var aLink = links.item(idx);
 
-					var kpListItem = kpLink.parentNode;
-					var rkListItem = getNewListItem(baseUrl +'&map=rk', 'Retkikartta');
-					var ptiListItem = getNewListItem(baseUrl +'&map=pti', 'Paikkatietoikkuna');
-
-					mapLinksSpan.insertBefore(rkListItem, kpListItem.nextSibling);
-					mapLinksSpan.insertBefore(ptiListItem, rkListItem.nextSibling);
+			if (!lat || !lon) {
+				if (aLink.hostname == 'www.geocaching.com') {
+					var res = aLink.search.match(/lat=(\d+\.\d+)\&lng=(\d+\.\d+)/);
+					if (res) {
+						lat = res[1];
+						lon = res[2];
+					}
+				}
+			}
+			else {
+				if (aLink.hostname == 'asiointi.maanmittauslaitos.fi') {
+					var kpHref = 'https://asiointi.maanmittauslaitos.fi/karttapaikka/api/linkki?x='+ lat +'&y='+ lon +'&srs=EPSG:4258&scale=4000';
+					aLink.href = kpHref;
 				}
 			}
 		}
