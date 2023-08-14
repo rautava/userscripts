@@ -4,7 +4,7 @@
 // @version      1.0
 // @description  Expand Bio sections automatically.
 // @author       Tommi Rautava
-// @license      CC0 1.0 Universal
+// @license      CC0-1.0
 // @match        https://www.geni.com/people/*
 // @grant        none
 // ==/UserScript==
