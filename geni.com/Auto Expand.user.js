@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Auto Expand
 // @namespace    4525639+rautava@users.noreply.github.com
-// @version      1.0
+// @version      1.1
 // @description  Expand Bio sections automatically.
 // @author       Tommi Rautava
 // @license      CC0-1.0
@@ -12,7 +12,7 @@
 (function () {
   "use strict";
 
-  var readMoreElem = document.getElementById("bio_en-US_toggle");
+  var readMoreElem = document.querySelector('a.toggle_link[id^="bio_"]');
 
   if (readMoreElem) {
     readMoreElem.click();
