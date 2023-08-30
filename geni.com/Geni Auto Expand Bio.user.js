@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Geni: Auto Expand Bio
+// @name         Geni Auto Expand Bio
 // @namespace    4525639+rautava@users.noreply.github.com
 // @version      1.1
 // @description  Expand Bio sections automatically.
