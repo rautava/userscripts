@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Geni Auto Expand Bio
 // @namespace    4525639+rautava@users.noreply.github.com
-// @version      1.1
+// @version      1.1.1
 // @description  Expand Bio sections automatically.
 // @author       Tommi Rautava
 // @license      CC0-1.0
