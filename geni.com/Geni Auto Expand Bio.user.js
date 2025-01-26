@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Geni Auto Expand Bio
 // @namespace    4525639+rautava@users.noreply.github.com
-// @version      1.3
+// @version      1.4
 // @description  Expand Bio sections automatically.
 // @author       Tommi Rautava
 // @license      CC0-1.0
@@ -12,7 +12,7 @@ let LOOP_INTERVAL = 300;
 let MAX_LOOP_COUNT = 20;
 let loopCount = 0;
 
-function clickAnchor() {
+function clickBioAnchor() {
   "use strict";
 
   let readMoreElem = document.querySelector('a.toggle_link[id^="bio_"]');
@@ -20,8 +20,10 @@ function clickAnchor() {
   if (readMoreElem) {
     readMoreElem.click();
   }
+}
 
-  let moreChildrenXpath = '//tr[@id="family_handprint"]//span[not(@style)]/a[@href="#"]';
+function clickToShowMoreChildren() {
+  let moreChildrenXpath = '//tr[@id="family_handprint"]//span[@style="display: inline;" or not(@style)]/a[@href="#"]';
   let moreChildrenResult = document.evaluate(moreChildrenXpath, document, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
   let node;
 
@@ -30,20 +32,21 @@ function clickAnchor() {
   }
 }
 
-function waitForAnchor() {
+function waitForBioAnchor(selector) {
   if (document.querySelector('a.toggle_link[id^="bio_"]')) {
-    clickAnchor();
+    clickBioAnchor();
   } else {
     loopCount++;
 
     if (loopCount <= MAX_LOOP_COUNT) {
-      setTimeout(waitForAnchor, LOOP_INTERVAL);
+      setTimeout(waitForBioAnchor, LOOP_INTERVAL);
     } else {
-      console.error("Timeout");
+      console.warn("Timeout");
     }
   }
 }
 
 (function () {
-  waitForAnchor();
+  waitForBioAnchor();
+  clickToShowMoreChildren();
 })();
