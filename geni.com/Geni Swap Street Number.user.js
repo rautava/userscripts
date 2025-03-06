@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Geni Swap Street Number
 // @namespace    4525639+rautava@users.noreply.github.com
-// @version      1.1
+// @version      1.2
 // @description  Swap the street and number in the address fields.
 // @author       Tommi Rautava
 // @license      CC0-1.0
@@ -14,6 +14,7 @@ let elementIds = [
   "birth_location_street_address1",
   "death_location_street_address1",
   "burial_location_street_address1",
+  "current_residence_street_address1",
 ];
 
 let regex = /^(\d+)\s+(.+)\s*$/;
