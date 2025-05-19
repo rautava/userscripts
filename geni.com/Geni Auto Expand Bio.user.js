@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name         Geni Auto Expand Bio
 // @namespace    4525639+rautava@users.noreply.github.com
-// @version      1.4
+// @version      1.5
 // @description  Expand Bio sections automatically.
 // @author       Tommi Rautava
 // @license      CC0-1.0
 // @match        https://www.geni.com/people/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=geni.com
+// @grant        none
 // ==/UserScript==
 
 let LOOP_INTERVAL = 300;
